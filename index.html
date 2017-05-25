@@ -94,12 +94,10 @@
                             $(go.TextBlock,"name",
                                     tableTextStyle(),
                                     new go.Binding("text","name")
-                                    //如果属性名不是text,则需要使用go.Binding("text","name")绑定数据
-                                    // 添加.makeTwoWay()才能使数据同步
                             ),
                             $(go.TextBlock,
                                     tableTextStyle(true),
-                                    new go.Binding("text","val").makeTwoWay()
+                                    new go.Binding("text","val")
                             )
                     );
             myDiagram.nodeTemplateMap.add("table",
@@ -195,7 +193,7 @@
             // This listener is called by the "LinkDrawn" and "LinkRelinked" DiagramEvents.
             function showLinkLabel(e) {
                 var label = e.subject.findObject("LABEL");
-                if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");//如果figure=Diamond则线的文字可以编辑
+                if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");
             }
 
             // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
@@ -204,16 +202,11 @@
 
 
             // initialize the Palette that is on the left side of the page
-            //初始化左边操作框的图像
             myPalette =
                     $(go.Palette, "myPaletteDiv",  // must name or refer to the DIV HTML element
                             {
                                 "animationManager.duration": 800, // slightly longer than default (600ms) animation
                                 nodeTemplateMap: myDiagram.nodeTemplateMap,  // 使用myDiagram.nodeTemplateMap来定义图形 share the templates used by myDiagram
-                                /**
-                                 * model根据category来识别定义的图形
-                                 * 当没有category时使用 myDiagram.nodeTemplateMap.add("")定义的图形
-                                 * */
                                 model: new go.GraphLinksModel([  //定义图形 specify the contents of the Palette
                                     {
                                         category: "table",
@@ -223,15 +216,6 @@
                                             { val: "120", name:"param2",figure: "FireHazard", fill: "red" },
                                             { val: "130",name:"param3", figure: "IrritationHazard", fill: "yellow" }
                                         ]
-                                    },
-                                    {
-                                        category: "table",
-                                        actions: [
-                                            { val: "1",name:"param1", figure: "ElectricalHazard", fill: "blue" },
-                                            { val: "2", name:"param2",figure: "FireHazard", fill: "red" },
-                                            { val: "3",name:"param3", figure: "IrritationHazard", fill: "yellow" }
-                                        ],
-                                        name: "test2"
                                     }
 
                                 ])
