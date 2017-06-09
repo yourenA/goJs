@@ -4,16 +4,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flowchart</title>
     <meta name="description" content="Interactive flowchart diagram implemented by GoJS in JavaScript for HTML."/>
-    <!-- Copyright 1998-2017 by Northwoods Software Corporation. -->
     <meta charset="UTF-8">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
     </style>
-    <script src="./go.js"></script>
+    <script src="go2.js"></script>
     <script id="code">
+        var formulaArr = [
+            {category: "start", text: "开始"},
+            {text: "节点", category: "node"},
+            {text: "条件1", category: "judge", figure: "Diamond"},
+            {text: "条件2", category: "judge", figure: "Diamond"},
+            {text: "循环条件", category: "judge", figure: "Diamond"},
+            {category: "end", text: "结束"},
+            {text: "subject 测试电源", isGroup: true, category: "OfGroups"},
+            {
+                category: "formula",
+                formula: "test_3.3v_delay",
+                title: "unit 测试3.3v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "string"},
+                    {name: "param3", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_3.5v_delay",
+                title: "unit 测试3.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_4.5v_delay",
+                title: "unit 测试4.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_4.5v_delay",
+                title: "unit 测试4.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_4.5v_delay",
+                title: "unit 测试4.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_4.5v_delay",
+                title: "unit 测试4.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_4.5v_delay",
+                title: "unit 测试4.5 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试10v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试20v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            },
+            {
+                category: "formula",
+                formula: "test_10v_delay",
+                title: "unit 测试30v 上电延迟",
+                params: [
+                    {name: "param1", val: "100", type: "init"},
+                    {name: "param2", val: "120", type: "init"},
+                    {name: "param3", val: "130", type: "init"},
+                    {name: "param4", val: "120", type: "init"},
+                    {name: "param5", val: "130", type: "init"},
+                    {name: "param6", val: "120", type: "init"},
+                    {name: "param7", val: "130", type: "init"}
+                ]
+            }];
         function init() {
             var $ = go.GraphObject.make;  // 创建一个GoJS对象
 
@@ -25,8 +236,18 @@
                                 "LinkDrawn": showLinkLabel,  //画线
                                 "LinkRelinked": showLinkLabel,//重新连接
                                 "animationManager.duration": 800, // slightly longer than default (600ms) animation
-                                "undoManager.isEnabled": true  // enable Ctrl-Z to undo and Ctrl-Y to redo 可以撤销
+                                "undoManager.isEnabled": true,  // enable Ctrl-Z to undo and Ctrl-Y to redo 可以撤销
+                                // allow Ctrl-G to call groupSelection()
+//                                "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "blue" },
+//                                "grid.visible": true,
+//                                "grid.gridCellSize": new go.Size(20, 20),
                             });
+
+            // Overview
+            myOverview =
+                    $(go.Overview, "myOverviewDiv",  // the HTML DIV element for the Overview
+                            { observed: myDiagram, contentAlignment: go.Spot.Center });   // tell it which Diagram to show and pan
+
 
             // when the document is modified, add a "*" to the title and enable the "Save" button
             myDiagram.addDiagramListener("Modified", function (e) {
@@ -52,6 +273,9 @@
                     {
                         // the Node.location is at the center of each node
                         locationSpot: go.Spot.Center,
+                        //isShadowed: true,
+                        //shadowColor: "#888",
+                        // handle mouse enter/leave events to show/hide the ports
                         mouseEnter: function (e, obj) {
                             showPorts(obj.part, true);
                         },
@@ -62,6 +286,10 @@
                 ];
             }
 
+            // Define a function for creating a "port" that is normally transparent.
+            // The "name" is used as the GraphObject.portId, the "spot" is used to control how links connect
+            // and where the port is positioned on the node, and the boolean "output" and "input" arguments
+            // control whether the user can draw links from or to the port.
             function makePort(name, spot, output, input) {
                 // the port is basically just a small circle that has a white stroke when it is made visible
                 return $(go.Shape, "Circle",
@@ -77,69 +305,320 @@
                         });
             }
 
-            var graygrad = $(go.Brush, "Linear",
-                    {0: "rgb(125, 125, 125)", 0.5: "rgb(86, 86, 86)", 1: "rgb(86, 86, 86)"});
 
+            var lightText = 'whitesmoke';
+
+            /**
+             * myDiagram.nodeTemplateMap.add("name",...)定义某一种节点图形
+             * $(go.Node, "Spot", nodeStyle(),$(go.Panel),...makePort)创建一个节点go.Node
+             * Shape, 显示预定义或者定制的带颜色的几何图形.
+             * TextBlock, to display (potentially editable) text in various fonts
+             * Picture, 显示图片
+             * Panel,一个包含了其它的对象集合的容器，可以根据Panel的类型修改位置、尺寸.
+             * */
+            myDiagram.nodeTemplateMap.add("node",  // the default category
+                    $(go.Node, "Spot", nodeStyle(),//节点最外层根据loc属性定位
+                            // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+                            $(go.Panel, "Auto",//节点第二层定义Panel
+                                    $(go.Shape, "Rectangle",//节点第三层定义Shape,
+                                            {fill: "#00A9C9", stroke: null},
+                                            new go.Binding("figure", "figure")),//Shape绑定figure
+                                    $(go.TextBlock,//节点第三层定义TextBlock
+                                            {
+                                                font: "bold 11pt Helvetica, Arial, sans-serif",
+                                                stroke: lightText,
+                                                margin: 8,
+                                                maxSize: new go.Size(160, NaN),
+                                                wrap: go.TextBlock.WrapFit,
+                                                editable: true//是否可以编辑，默认是false
+                                            },
+                                            new go.Binding("text").makeTwoWay())//TextBlock绑定text属性
+                            ),
+                            // four named ports, one on each side:
+                            makePort("T", go.Spot.Top, false, true),//创建点，顶点不可输出，可以输入
+                            makePort("L", go.Spot.Left, true, true),
+                            makePort("R", go.Spot.Right, true, true),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));
+
+            myDiagram.nodeTemplateMap.add("judge",
+                    $(go.Node, "Spot", nodeStyle(),//节点最外层根据loc属性定位
+                            // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+                            $(go.Panel, "Auto",//节点第二层定义Panel
+                                    $(go.Shape, "Diamond",//节点第三层定义Shape,
+                                            {fill: "#00A9C9", stroke: null}),//Shape绑定figure
+                                    $(go.TextBlock,//节点第三层定义TextBlock
+                                            {
+                                                font: "bold 11pt Helvetica, Arial, sans-serif",
+                                                stroke: lightText,
+                                                margin: 8,
+                                                maxSize: new go.Size(160, NaN),
+                                                wrap: go.TextBlock.WrapFit,
+                                                editable: false//是否可以编辑，默认是false
+                                            },
+                                            new go.Binding("text").makeTwoWay())//TextBlock绑定text属性
+                            ),
+                            // four named ports, one on each side:
+                            makePort("T", go.Spot.Top, false, true),//创建点，顶点不可输出，可以输入
+                            makePort("L", go.Spot.Left, true, true),
+                            makePort("R", go.Spot.Right, true, true),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));
             function tableTextStyle(bool) {
                 return {
                     margin: 5,
                     wrap: go.TextBlock.WrapFit,
                     textAlign: "center",
-                    editable: bool||false,
-                    font: "bold 9pt Helvetica, Arial, sans-serif"
+                    editable: bool || false,
+                    font: "10pt Helvetica, Arial, sans-serif"
                 }
             }
-            var actionTemplate =
-                    $(go.Panel, "Horizontal",
-                            $(go.TextBlock,"name",
-                                    tableTextStyle(),
-                                    new go.Binding("text","name")
-                            ),
-                            $(go.TextBlock,
-                                    tableTextStyle(true),
-                                    new go.Binding("text","val")
-                            )
-                    );
-            myDiagram.nodeTemplateMap.add("table",
+
+            myDiagram.nodeTemplateMap.add("test_3.3v_delay",
                     $(go.Node, "Auto",
                             // define the node's outer shape
                             nodeStyle(),//加了nodeStyle左边左边操作框才会对齐
                             $(go.Shape, "RoundedRectangle",
                                     {
-                                        fill: graygrad, stroke: "black",
+                                        fill: '#00A9C9', stroke: "black",
+                                    }),
+
+                            $(go.Panel, "Vertical",//节点第二层定义Panel
+                                    $(go.Panel, "Horizontal",  // button next to TextBlock
+                                            {stretch: go.GraphObject.Horizontal, background: "#FFDD33"},
+                                            $("PanelExpanderButton", "COLLAPSIBLE",
+                                                    {alignment: go.Spot.Right, margin: 5},
+                                                    {visible: true}),
+                                            $(go.TextBlock,
+                                                    {
+                                                        alignment: go.Spot.Left,
+                                                        editable: false,
+                                                        margin: 5,
+                                                        font: "bold 14px sans-serif",
+                                                        opacity: 0.75,
+                                                        stroke: "#404040"
+                                                    },
+                                                    new go.Binding("text", "title"))
+                                    ),
+                                    $(go.Panel, "Table",
+                                            // Set defaults for all rows and columns:
+                                            {
+                                                defaultRowSeparatorStroke: "gray",
+                                                defaultColumnSeparatorStroke: "gray"
+                                            },
+                                            {
+                                                name: "COLLAPSIBLE",
+                                                width: 150,
+                                                maxSize: new go.Size(200, 999),
+                                                margin: new go.Margin(3, 3, 0, 3),
+                                                defaultAlignment: go.Spot.Left
+                                            },
+                                            {visible: false},//这里设置使表格默认折叠起来
+                                            $(go.TextBlock, "param1 ", tableTextStyle(),  // the ID and the boss
+                                                    {row: 1, column: 0}),
+                                            $(go.TextBlock, tableTextStyle(true),
+                                                    {row: 1, column: 1},
+                                                    new go.Binding("text", "param1").makeTwoWay()),
+                                            $(go.TextBlock, "param2 ", tableTextStyle(),
+                                                    {row: 2, column: 0}),
+                                            $(go.TextBlock, tableTextStyle(true),
+                                                    {row: 2, column: 1},
+                                                    new go.Binding("text", "param2").makeTwoWay()),
+                                            $(go.TextBlock, "param3 ", tableTextStyle(),
+                                                    {row: 3, column: 0}),
+                                            $(go.TextBlock, tableTextStyle(true),
+                                                    {row: 3, column: 1},
+                                                    new go.Binding("text", "param3").makeTwoWay()),
+                                            $(go.TextBlock, "param4 ", tableTextStyle(),
+                                                    {row: 4, column: 0}),
+                                            $(go.TextBlock, tableTextStyle(true),
+                                                    {row: 4, column: 1},
+                                                    new go.Binding("text", "param4").makeTwoWay())
+                                    )
+                            ),
+                            makePort("T", go.Spot.Top, true, true),
+                            makePort("L", go.Spot.Left, true, true),
+                            makePort("R", go.Spot.Right, true, true),
+                            makePort("B", go.Spot.Bottom, true, true)
+                    ));
+
+
+            myDiagram.nodeTemplateMap.add("start",
+                    $(go.Node, "Spot", nodeStyle(),
+                            $(go.Panel, "Auto",
+                                    $(go.Shape, "Circle",
+                                            {minSize: new go.Size(40, 40), fill: "#79C900", stroke: null}),
+                                    $(go.TextBlock, "Start",
+                                            {font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText},
+                                            new go.Binding("text"))
+                            ),
+                            // three named ports, one on each side except the top, all output only:
+                            makePort("L", go.Spot.Left, true, false),
+                            makePort("R", go.Spot.Right, true, false),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));
+
+            myDiagram.nodeTemplateMap.add("end",
+                    $(go.Node, "Spot", nodeStyle(),
+                            $(go.Panel, "Auto",
+                                    $(go.Shape, "Circle",
+                                            {minSize: new go.Size(40, 40), fill: "#000", stroke: null}),
+                                    $(go.TextBlock, "End",
+                                            {font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText},
+                                            new go.Binding("text"))
+                            ),
+                            // three named ports, one on each side except the bottom, all input only:
+                            makePort("T", go.Spot.Top, false, true),
+                            makePort("L", go.Spot.Left, false, true),
+                            makePort("R", go.Spot.Right, false, true)
+                    ));
+
+            // this function is used to highlight a Group that the selection may be dropped into
+            function highlightGroup(e, grp, show) {
+                if (!grp) return;
+                e.handled = true;
+                if (show) {
+                    // cannot depend on the grp.diagram.selection in the case of external drag-and-drops;
+                    // instead depend on the DraggingTool.draggedParts or .copiedParts
+                    var tool = grp.diagram.toolManager.draggingTool;
+                    var map = tool.draggedParts || tool.copiedParts;  // this is a Map
+                    // now we can check to see if the Group will accept membership of the dragged Parts
+                    if (grp.canAddMembers(map.toKeySet())) {
+                        grp.isHighlighted = true;
+                        return;
+                    }
+                }
+                grp.isHighlighted = false;
+            }
+
+            function finishDrop(e, grp) {
+                var ok = (grp !== null
+                        ? grp.addMembers(grp.diagram.selection, true)
+                        : e.diagram.commandHandler.addTopLevelParts(e.diagram.selection, true));
+            }
+
+            myDiagram.groupTemplateMap.add("OfGroups",
+                    $(go.Group, "Auto",
+                            [
+                                new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+                                {
+                                    locationSpot: go.Spot.Center,
+                                    mouseEnter: function (e, obj) {
+                                        showPorts(obj.part, true);
+                                    },
+                                    mouseLeave: function (e, obj) {
+                                        showPorts(obj.part, false);
+                                    }
+                                }
+                            ],
+                            {
+                                background: "transparent",
+                                // highlight when dragging into the Group
+                                mouseDragEnter: function (e, grp, prev) {
+                                    highlightGroup(e, grp, true);
+                                },
+                                mouseDragLeave: function (e, grp, next) {
+                                    highlightGroup(e, grp, false);
+                                },
+                                computesBoundsAfterDrag: true,
+                                // when the selection is dropped into a Group, add the selected Parts into that Group;
+                                // if it fails, cancel the tool, rolling back any changes
+                                mouseDrop: finishDrop,
+                                handlesDragDropForMembers: true,  // don't need to define handlers on member Nodes and Links
+                                // Groups containing Groups lay out their members horizontally
+                            },
+                            new go.Binding("background", "isHighlighted", function (h) {
+                                return h ? "rgba(255,0,0,0.2)" : "transparent";
+                            }).ofObject(),
+//                            { resizable: true },
+                            $(go.Shape, "RoundedRectangle",
+                                    {fill: null, stroke: "black", strokeWidth: 1}),
+                            $(go.Panel, "Vertical",  // title above Placeholder
+                                    $(go.Panel, "Horizontal",  // button next to TextBlock
+                                            {stretch: go.GraphObject.Horizontal, background: "#FFDD33"},
+                                            $("SubGraphExpanderButton",
+                                                    {alignment: go.Spot.Left, margin: 5}),
+                                            $(go.TextBlock,
+                                                    {
+                                                        alignment: go.Spot.Right,
+                                                        editable: true,
+                                                        margin: 5,
+                                                        font: "bold 18px sans-serif",
+                                                        opacity: 0.75,
+                                                        stroke: "#404040"
+                                                    },
+                                                    new go.Binding("text", "text").makeTwoWay())
+                                    ),  // end Horizontal Panel
+                                    $(go.Placeholder,
+                                            {margin: new go.Margin(15), alignment: go.Spot.TopLeft})
+                            ),  // end Vertical Panel
+
+                            // three named ports, one on each side except the bottom, all input only:
+                            makePort("T", go.Spot.Top, false, true),
+                            makePort("L", go.Spot.Left, true, true),
+                            makePort("R", go.Spot.Right, true, true),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));  // end Group and call to add to template Map
+
+
+            var actionTemplate =
+                    $(go.Panel, "TableRow",
+                            $(go.TextBlock, "name",
+                                    {column: 0, margin: 5, font: " 10pt sans-serif"},
+                                    new go.Binding("text", "name")
+                            ),
+                            $(go.TextBlock,
+                                    {column: 1, margin: 5, font: " 10pt sans-serif", editable: true,},
+                                    new go.Binding("text", "val").makeTwoWay()
+                            ),
+                            $(go.TextBlock,
+                                    {column: 3, margin: 5, font: " 10pt sans-serif", editable: true,},
+                                    new go.Binding("text", "type").makeTwoWay()
+                            )
+                    );
+            myDiagram.nodeTemplateMap.add("formula",
+                    $(go.Node, "Auto",
+                            // define the node's outer shape
+                            nodeStyle(),//加了nodeStyle左边左边操作框才会对齐
+                            $(go.Shape, "RoundedRectangle",
+                                    {
+                                        fill: '#00A9C9', stroke: "black",
                                     }),
 
                             $(go.Panel, "Vertical",
-                                    { stretch: go.GraphObject.Horizontal, visible: false },  // not visible unless there is more than one action
-                                    new go.Binding("visible", "actions", function(acts) {
-                                        return (Array.isArray(acts) && acts.length > 0);
-                                    }),
+                                    {stretch: go.GraphObject.Horizontal, background: "#FFDD33"},
                                     // headered by a label and a PanelExpanderButton inside a Table
                                     $(go.Panel, "Table",
-                                            { stretch: go.GraphObject.Horizontal },
-                                            $(go.TextBlock, "Choices",
-                                                    { alignment: go.Spot.Left,
-                                                        margin: 10,
-                                                        stroke: "white",
-                                                        editable: true,
+                                            {stretch: go.GraphObject.Horizontal},
+                                            $(go.TextBlock,
+                                                    {
+                                                        alignment: go.Spot.Left,
+                                                        margin: new go.Margin(10,0,10,10),
+                                                        stroke: "black",
                                                         font: "10pt Verdana, sans-serif"
                                                     },
-                                                    new go.Binding("text", "name").makeTwoWay()
+                                                    new go.Binding("text", "title").makeTwoWay()
                                             ),
                                             $("PanelExpanderButton", "COLLAPSIBLE",  //引用下拉菜单COLLAPSIBLE name of the object to make visible or invisible
-                                                    { column: 1, alignment: go.Spot.Right }
+                                                    {column: 1, alignment: go.Spot.Left, margin: new go.Margin(0,10,0,0),}
                                             )
                                     ), // end Table panel
                                     // with the list data bound in the Vertical Panel
-                                    $(go.Panel, "Vertical",
-                                            { name: "COLLAPSIBLE",  //定义下拉菜单COLLAPSIBLE identify to the PanelExpanderButton
-                                                padding: 2,
+                                    $(go.Panel, "Table",
+                                            {
+                                                defaultRowSeparatorStroke: "gray",
+                                                defaultColumnSeparatorStroke: "gray"
+                                            },
+                                            {
+                                                name: "COLLAPSIBLE",  //定义下拉菜单COLLAPSIBLE identify to the PanelExpanderButton
+                                                padding: 1,
+                                                visible: false,
                                                 stretch: go.GraphObject.Horizontal,  // take up whole available width
-                                                background: "white",  // to distinguish from the node's body
+                                                background: "#00A9C9",  // to distinguish from the node's body
                                                 defaultAlignment: go.Spot.Left,  // thus no need to specify alignment on each element
                                                 itemTemplate: actionTemplate  // the Panel created for each item in Panel.itemArray
                                             },
-                                            new go.Binding("itemArray", "actions").makeTwoWay()  // bind Panel.itemArray to nodedata.actions
+                                            new go.Binding("itemArray", "params").makeTwoWay()  // bind Panel.itemArray to nodedata.actions
                                     )  // end action list Vertical Panel
                             ),  // end optional Vertical Panel
                             makePort("T", go.Spot.Top, false, true),//创建点，顶点不可输出，可以输入
@@ -148,6 +627,8 @@
                             makePort("B", go.Spot.Bottom, true, false)
                     ));
 
+            // replace the default Link template in the linkTemplateMap
+            //重新定义连线模板
             myDiagram.linkTemplate =
                     $(go.Link,  // the whole link panel
                             {
@@ -178,22 +659,22 @@
                                     new go.Binding("visible", "visible").makeTwoWay(),
                                     $(go.Shape, "RoundedRectangle",  // the label shape
                                             {fill: "#F8F8F8", stroke: null}),
-                                    $(go.TextBlock, "Yes",  // the label
+                                    $(go.TextBlock, "Y",  // the label
                                             {
                                                 textAlign: "center",
                                                 font: "10pt helvetica, arial, sans-serif",
                                                 stroke: "#333333",
                                                 editable: true
                                             },
-                                            new go.Binding("text").makeTwoWay())
+                                            new go.Binding("text", "condition").makeTwoWay())
                             )
                     );
 
             // Make link labels visible if coming out of a "conditional" node.
             // This listener is called by the "LinkDrawn" and "LinkRelinked" DiagramEvents.
             function showLinkLabel(e) {
-                var label = e.subject.findObject("LABEL");
-                if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");
+                var label = e.subject.findObject("LABEL");// name: "LABEL"
+                if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");//如果figure=Diamond则线的文字可以编辑
             }
 
             // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
@@ -202,28 +683,35 @@
 
 
             // initialize the Palette that is on the left side of the page
+            //初始化左边操作框的图像
             myPalette =
                     $(go.Palette, "myPaletteDiv",  // must name or refer to the DIV HTML element
+
                             {
-                                "animationManager.duration": 800, // slightly longer than default (600ms) animation
+                                layout: $(go.GridLayout, {alignment: go.GridLayout.Location}),
+                                "animationManager.duration": 1, // slightly longer than default (600ms) animation
                                 nodeTemplateMap: myDiagram.nodeTemplateMap,  // 使用myDiagram.nodeTemplateMap来定义图形 share the templates used by myDiagram
+                                groupTemplateMap: myDiagram.groupTemplateMap,
+                                /**
+                                 * model根据category来识别定义的图形
+                                 * 当没有category时使用 myDiagram.nodeTemplateMap.add("")定义的图形
+                                 * */
                                 model: new go.GraphLinksModel([  //定义图形 specify the contents of the Palette
-                                    {
-                                        category: "table",
-                                        name: "test1",
-                                        actions: [
-                                            { val: "100",name:"param1", figure: "ElectricalHazard", fill: "blue" },
-                                            { val: "120", name:"param2",figure: "FireHazard", fill: "red" },
-                                            { val: "130",name:"param3", figure: "IrritationHazard", fill: "yellow" }
-                                        ]
-                                    }
-
-                                ])
+                                    /*{
+                                     category: "test_3.3v_delay",
+                                     title: "测试3.3v 上电延迟",
+                                     param1: "1",
+                                     param2: "2",
+                                     param3: "3",
+                                     param4: "4",
+                                     },*/
+                                ].concat(formulaArr))
                             });
-
+            myDiagram.model.copiesArrays = true;//设置这个使用itemArr数据才不会互相影响
+            myDiagram.model.copiesArrayObjects = true;//设置这个使用itemArr数据才不会互相影响
             // The following code overrides GoJS focus to stop the browser from scrolling
             // the page when either the Diagram or Palette are clicked or dragged onto.
-
+            myPalette.layout.sorting = go.GridLayout.Forward;
             function customFocus() {
                 var x = window.scrollX || window.pageXOffset;
                 var y = window.scrollY || window.pageYOffset;
@@ -234,7 +722,7 @@
             myDiagram.doFocus = customFocus;
             myPalette.doFocus = customFocus;
 
-
+//            load()
         } // end init
 
         // Make all ports on a node visible when the mouse is over the node
@@ -255,7 +743,10 @@
         function load() {
             myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
         }
-
+        function search(newModel) {
+            myPalette.model = new go.GraphLinksModel(formulaArr.concat(JSON.parse(newModel.value)));
+            formulaArr=formulaArr.concat(JSON.parse(newModel.value));
+        }
         // add an SVG rendering of the diagram at the end of this page
         function makeSVG() {
             var svg = myDiagram.makeSvg({
@@ -268,6 +759,28 @@
                 obj.replaceChild(svg, obj.children[0]);
             }
         }
+        function searchDiagram() {  // called by button
+            var input = document.getElementById("mySearch");
+            if (!input) return;
+            input.focus();
+
+            myPalette.startTransaction("highlight search");
+
+            if (input.value) {
+                // search four different data properties for the string, any of which may match for success
+                // create a case insensitive RegExp from what the user typed
+                var regex = new RegExp(input.value, "i");
+                console.log("regex",regex)
+                var results = myPalette.findNodesByExample({ name: regex },
+                        { text: regex },
+                        { title: regex });
+                // try to center the diagram at the first node that was found
+                if (results.count > 0) myPalette.centerRect(results.first().actualBounds);
+            } else {  // empty string only clears highlighteds collection
+                myPalette.clearHighlighteds();
+            }
+
+        }
     </script>
 </head>
 <body onload="init()">
@@ -275,34 +788,41 @@
     <div style="width:100%; white-space:nowrap;">
     <span style="display: inline-block; vertical-align: top; width:200px">
       <div id="myPaletteDiv" style="border: solid 1px black; height: 720px"></div>
-    </span><span style="display: inline-block; vertical-align: top; width:calc(100vw - 200px)">
-      <div id="myDiagramDiv" style="border: solid 1px black; height: 720px"></div>
     </span>
+        <div style="display: inline-block; vertical-align: top; width:calc(100vw - 200px);position: relative">
+            <div id="myDiagramDiv" style="border: solid 1px black; height: 720px"></div>
+        </div>
     </div>
-    <p>
-        The FlowChart sample demonstrates several key features of GoJS,
-        namely <a href="../intro/palette.html">Palette</a>s,
-        <a href="../intro/links.html">Linkable nodes</a>, Drag/Drop behavior,
-        <a href="../intro/textBlocks.html">Text Editing</a>, and the use of
-        <a href="../intro/templateMaps.html">Node Template Maps</a> in Diagrams.
-    </p>
-    <p>
-        Mouse-over a Node to view its ports.
-        Drag from these ports to create new Links.
-        Selecting Links allows you to re-shape and re-link them.
-        Selecting a Node and then clicking its TextBlock will allow
-        you to edit text (except on the Start and End Nodes).
-    </p>
-    <button id="SaveButton" onclick="save()">Save</button>
-    <button onclick="load()">Load</button>
-    Diagram Model saved in JSON format:
+    <div id="myOverviewDiv" style="position: absolute;left: 205px;top:0;width: 200px;height:100px"></div>
+    <input type="text" width="200" name="newModel" id="newModel">
+    <button id="serchButton" onclick="search(newModel)">添加图形</button>
+    <hr>
+    <input type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()" />
+    <button onclick="searchDiagram()">Search</button>
+    <hr>
+    <button id="SaveButton" onclick="save()">将图表转为JSON</button>
+    <button onclick="load()">将JSON转为图表</button>
     <textarea id="mySavedModel" style="width:100%;height:300px">
+        { "class": "go.GraphLinksModel",
+        "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+{"category":"test_3.3v_delay", "title":"测试3.3v 上电延迟", "param1":"111", "param2":"22", "param3":"3", "param4":"4", "key":-5, "loc":"-159.99635128182234 -157.99431812763214"},
+{"category":"test_3.3v_threshold", "title":"测试3.3v 负载阈值", "param1":"1", "param2":"2", "param3":"3", "key":-6, "loc":"-16.9963512818224 82.00568187236786"},
+{"category":"test_5v_active_delay", "title":"测试5v 激活与延时", "param1":"1", "param2":"2", "key":-7, "loc":"-322.99635128182234 95.00568187236786"},
+{"text":"???", "category":"judge", "figure":"Diamond", "key":-3, "loc":"-184.99635128182234 -15.994318127632141"},
+{"category":"start", "text":"开始", "key":-1, "loc":"-186.99635128182234 -286.99431812763214"},
+{"category":"end", "text":"结束", "key":-4, "loc":"-179.99635128182234 251.00568187236786"}
+ ],
+  "linkDataArray": [
+{"from":-1, "to":-5, "points":[-186.99635128182234,-265.18619544838754,-186.99635128182234,-255.18619544838754,-186.99635128182234,-220.39982608446184,-159.9963512818223,-220.39982608446184,-159.9963512818223,-185.6134567205361,-159.9963512818223,-175.6134567205361]},
+{"from":-5, "to":-3, "points":[-159.9963512818223,-140.37517953472818,-159.9963512818223,-130.37517953472818,-159.9963512818223,-94.37247313537938,-184.99635128182234,-94.37247313537938,-184.99635128182234,-58.36976673603057,-184.99635128182234,-48.36976673603057]},
+{"from":-3, "to":-7, "visible":true, "points":[ -228.36108211678328,-15.994318127632148,-238.36108211678328,-15.994318127632148,-238.36108211678328,46.8838368801151,-233.53160925226445,46.8838368801151,-233.53160925226445,95.00568187236786,-243.53160925226445,95.00568187236786 ]},
+{"from":-3, "to":-6, "visible":true, "points":[ -141.6316204468614,-15.994318127632148,-131.6316204468614,-15.994318127632148,-118.70456000412088,-15.994318127632148,-118.70456000412088,82.00568187236786,-105.77749956138035,82.00568187236786,-95.77749956138035,82.00568187236786 ], "text":"No"},
+{"from":-7, "to":-4, "points":[ -322.9963512818224,112.62482046527182,-322.9963512818224,122.62482046527182,-322.9963512818224,170.91118982919753,-179.99635128182234,170.91118982919753,-179.99635128182234,219.19755919312323,-179.99635128182234,229.19755919312323 ]},
+{"from":-6, "to":-4, "points":[ -16.996351281822427,99.62482046527182,-16.996351281822427,109.62482046527182,-16.996351281822427,164.41118982919753,-179.99635128182234,164.41118982919753,-179.99635128182234,219.19755919312323,-179.99635128182234,229.19755919312323 ]}
+ ]}
   </textarea>
-    <p>Click the button below to render the current GoJS Diagram into SVG at one-half scale.
-        The SVG is not interactive like the GoJS diagram, but can be used for printing or display.
-        For more information, see the page on <a href="../intro/makingSVG.html">making SVG</a>.</p>
-    <button onclick="makeSVG()">Render as SVG</button>
-    <div id="SVGArea"></div>
 </div>
 </body>
 </html>
